@@ -2,4 +2,5 @@ import { CreateCollaboratorDTO } from "../use-case/collaborator/create-collabora
 
 export interface CollaboratorRepository {
    create(payload: CreateCollaboratorDTO): Promise<void>
+   findByEmail(email: string): Promise<CreateCollaboratorDTO | null>
 }
