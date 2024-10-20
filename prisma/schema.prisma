@@ -12,3 +12,45 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Role {
+  USER
+  ANALISTA
+  CONDUTOR
+  PESQUISADOR
+  ATA
+  ADMIN
+}
+
+enum PersonType {
+  CONDUTOR
+  PESQUISADOR
+  VOLUNTARIO
+  ATA
+  ANALISTA
+}
+
+enum RegistrationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Collaborator {
+  id                  String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                String             @db.VarChar(250)
+  email               String             @unique @db.VarChar(200)
+  matricula           String?            @db.VarChar(100)
+  cpf                 String             @unique @db.VarChar(11)
+  phone               String             @db.VarChar(20)
+  password            String
+  person_type         PersonType
+  role                Role               @default(USER)
+  registration_status RegistrationStatus @default(PENDING)
+  first_login          Boolean            @default(true)
+  public_id           String?            @db.VarChar(200)
+  createdAt           DateTime           @default(now()) @map("created_at")
+  updatedAt           DateTime           @updatedAt @map("updated_at")
+
+  @@map("collaborators")
+}
