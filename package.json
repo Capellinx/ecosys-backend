@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "server-of-ecosys",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -8,7 +8,7 @@
     "start": "tsx watch src/server.ts"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lucas Capella Moreira dos Santos",
   "license": "ISC",
   "description": "",
   "devDependencies": {
@@ -20,6 +20,7 @@
     "@prisma/client": "^5.21.1",
     "express": "^4.21.1",
     "express-async-errors": "^3.1.1",
+    "helmet": "^8.0.0",
     "tsx": "^4.19.1",
     "zod": "^3.23.8"
   }
