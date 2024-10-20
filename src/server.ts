@@ -1,5 +1,6 @@
 import { prisma } from "../prisma";
 import { app } from "./app";
+import { env } from "./env";
 
 async function connectToDatabase() {
    try {
@@ -13,7 +14,7 @@ async function connectToDatabase() {
 async function startServer() {
    await connectToDatabase();
 
-   app.listen(3000, () => {
+   app.listen(env.PORT, () => {
       console.log("🚀 Server started on port 3000");
    });
 
