@@ -1,8 +1,9 @@
+import { PersonType, Role } from "@prisma/client"
 import { CreateCollaboratorDTO } from "../../use-cases/auth/create-collaborator/create-collaborator-dto"
 
 export interface CollaboratorRepository {
    create(payload: CollaboratorRepository.CreateParams): Promise<void>
-   findByEmail(email: string): Promise<CreateCollaboratorDTO | null>
+   findByEmail(email: string): Promise<boolean | null>
 }
 
 export namespace CollaboratorRepository {
