@@ -5,11 +5,11 @@ interface CollaboratorProps {
    password: string
    personType: PersonType
    cpf: string
-   matricula: string
+   matricula?: string
    phone: string
    createdAt: Date
    updatedAt: Date
-   role: Role
+   role?: Role
 }
 
 export class Collaborator {
@@ -17,13 +17,13 @@ export class Collaborator {
    public name: string
    public email: string
    public cpf: string
-   public matricula: string
+   public matricula?: string
    public phone: string
    public password: string
    public personType: PersonType
    public createdAt: Date
    public updatedAt: Date
-   public role: Role
+   public role?: Role
 
 
    constructor(props: CollaboratorProps, id?: string) {
