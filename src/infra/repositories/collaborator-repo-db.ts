@@ -38,4 +38,33 @@ export class CollaboratorRepoDB implements CollaboratorRepository{
 
     return null
   }
+
+  async findById(id: string): Promise<string | null> {
+     const collaborator = await prisma.collaborator.findUnique({
+      where: {
+        id
+      },
+      select: {
+        id: true
+      }
+    })
+
+    if (collaborator?.id) return collaborator.id
+
+    return null
+  }
+
+  async approve(id: string): Promise<void> {
+    await prisma.collaborator.update({
+      where: {
+        id
+      },
+      data: {
+        registration_status: "APPROVED",
+        updatedAt: new Date()
+      }
+    })
+
+    return
+  }
 }
