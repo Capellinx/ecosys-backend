@@ -15,7 +15,7 @@ async function startServer() {
    await connectToDatabase();
 
    app.listen(env.PORT, () => {
-      console.log("🚀 Server started on port 3000");
+      console.log(`🚀 Server started on port ${env.PORT}`);
    });
 
 }
