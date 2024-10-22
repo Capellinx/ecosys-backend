@@ -4,7 +4,7 @@ import { z } from "zod";
 export const collaboratorSchema = z.object({
    name: z.string().min(1),
    email: z.string().email().min(1),
-   matricula: z.string(),
+   matricula: z.string().optional(),
    cpf: z.coerce.string().min(1).max(11),
    phone: z.coerce.string().min(1).max(14),
    personType: z.nativeEnum(PersonType),
