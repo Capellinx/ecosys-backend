@@ -11,9 +11,9 @@ export class CreateCollaboratorUseCase {
       private encryptedPasswordService: EncryptedPasswordService
    ) { }
 
-   async execute(payload: CreateCollaboratorDTO): Promise<void> {
+   async execute(payload: CreateCollaboratorDTO): Promise<CreateCollaboratorUseCase.Output> {
       const collaborator = await this.collaboratorRepository.findByEmail(payload.email)
-
+      
       if (collaborator) throw new ConflictError("Collaborator already exists")
 
       const icmbioCollaborator = ['ATA', 'ANALISTA']
@@ -26,29 +26,33 @@ export class CreateCollaboratorUseCase {
         const newCollaborator = new Collaborator({
            name: payload.name,
            email: payload.email,
-           matricula: payload.matricula,
+           matricula: payload.matricula!,
            cpf: payload.cpf,
            phone: payload.phone,
            password: encryptedPassword,
-           personType: payload.personType,
-           role: payload.personType === 'ANALISTA' ? 'ANALISTA' : 'ATA',
+           personType: payload.personType === 'ATA' ? 'ATA' : 'ANALISTA',
+           role: payload.personType === 'ATA' ? 'ATA' : 'ANALISTA',
            createdAt: new Date(),
            updatedAt: new Date()
         })
         
         await this.collaboratorRepository.create(newCollaborator)
 
-        return
+        return {
+           success: {
+              id_collaborator: newCollaborator.id,
+              message: 'Collaborator created successfully',
+           }
+        }
       }
       
       const newCollaborator = new Collaborator({
          name: payload.name,
          email: payload.email,
-         matricula: payload.matricula,
          cpf: payload.cpf,
          phone: payload.phone,
          password: encryptedPassword,
-         personType: payload.personType,
+         personType: payload.personType === 'CONDUTOR' ? 'CONDUTOR' : 'PESQUISADOR',
          role: payload.personType === 'CONDUTOR' ? 'CONDUTOR' : 'PESQUISADOR',
          createdAt: new Date(),
          updatedAt: new Date()
@@ -56,6 +60,20 @@ export class CreateCollaboratorUseCase {
 
       await this.collaboratorRepository.create(newCollaborator)
 
-      return
+      return {
+         success: {
+            id_collaborator: newCollaborator.id,
+            message: 'Collaborator created successfully',
+         }
+      }
+   }
+}
+
+export namespace CreateCollaboratorUseCase {
+   export type Output = {
+      success: {
+         id_collaborator: string
+         message: string
+      }
    }
 }
