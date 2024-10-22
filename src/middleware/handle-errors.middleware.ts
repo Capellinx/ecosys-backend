@@ -26,6 +26,6 @@ export class errorHandler {
          return response.status(400).json({ error: err.issues });
       }
 
-      return response.status(500).json({ error: "Internal server error" });
+      return response.status(500).json({ error: err.message });
    }
 }
