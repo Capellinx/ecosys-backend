@@ -12,7 +12,7 @@ export class JsonWebTokenService implements TokenService {
    }
 
    generateRefreshToken(id: Record<string, any>): string {
-      const token = Jwt.sign(id, env.JWT_SECRET as string, {
+      const token = Jwt.sign(id, env.JWT_REFRESH_SECRET as string, {
          expiresIn: "7d"
       })
 
