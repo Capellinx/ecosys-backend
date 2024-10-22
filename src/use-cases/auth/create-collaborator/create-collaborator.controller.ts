@@ -7,12 +7,12 @@ export class CreateCollaboratorController {
    ){}
 
    async handle(request: Request, response: Response): Promise<Response> { 
-      const { name, email, person_type, cpf, phone, role, matricula } = request.body;
+      const { name, email, personType, cpf, phone, role, matricula } = request.body;
 
       const data = await this.createCollaboratorUseCase.execute({
          name,
          email,
-         personType: person_type,
+         personType,
          cpf,
          phone,
          role,
