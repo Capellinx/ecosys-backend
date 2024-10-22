@@ -1,7 +1,7 @@
 import { PersonType, Role } from "@prisma/client";
 import { z } from "zod";
 
-export const collaboratorSchema = z.object({
+export const createCollaboratorSchema = z.object({
    name: z.string().min(1),
    email: z.string().email().min(1),
    matricula: z.string().optional(),
@@ -11,4 +11,4 @@ export const collaboratorSchema = z.object({
    role: z.nativeEnum(Role).optional(),
 })
 
-export type CreateCollaboratorDTO = z.infer<typeof collaboratorSchema>
+export type CreateCollaboratorDTO = z.infer<typeof createCollaboratorSchema>
