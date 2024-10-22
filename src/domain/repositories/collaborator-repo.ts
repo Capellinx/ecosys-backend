@@ -9,12 +9,12 @@ export namespace CollaboratorRepository {
    export type CreateParams = {
       name: string
       email: string
-      matricula: string
+      matricula?: string
       cpf: string
       phone: string
       password: string
-      personType: string
-      role: string
+      personType: PersonType
+      role?: Role
       createdAt: Date,
       updatedAt: Date
    }
