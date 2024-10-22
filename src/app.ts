@@ -8,6 +8,6 @@ const app = express();
 app.use(json())
 app.use(helmet())
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => { errorHandler.execute });
+app.use(errorHandler.execute);
 
 export { app }
