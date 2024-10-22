@@ -1,43 +1,43 @@
-import { PersonType, RegistrationStatus, Role } from "@prisma/client"
-import { randomUUID } from "crypto"
-
+import { PersonType, Role } from "@prisma/client"
 interface CollaboratorProps {
    name: string
    email: string
-   matricula: string
-   cpf: number
-   phone: number
    password: string
    personType: PersonType
-   role: Role
+   cpf: string
+   matricula: string
+   phone: string
    createdAt: Date
    updatedAt: Date
+   role: Role
 }
 
 export class Collaborator {
-   private _id: string
-   private _name: string
-   private _email: string
-   private _matricula: string
-   private _cpf: number 
-   private _phone: number  
-   private _password: string
-   private _personType: PersonType
-   private _role: Role
-   private _createdAt: Date
-   private _updatedAt: Date
+   public id: string
+   public name: string
+   public email: string
+   public cpf: string
+   public matricula: string
+   public phone: string
+   public password: string
+   public personType: PersonType
+   public createdAt: Date
+   public updatedAt: Date
+   public role: Role
+
 
    constructor(props: CollaboratorProps, id?: string) {
-      this._id = id ?? randomUUID()
-      this._name = props.name
-      this._email = props.email
-      this._matricula = props.matricula
-      this._cpf = props.cpf
-      this._phone = props.phone
-      this._password = props.password
-      this._personType = props.personType
-      this._role = props.role
-      this._createdAt = props.createdAt
-      this._updatedAt = props.updatedAt
+      this.id = id ?? crypto.randomUUID()
+      this.name = props.name
+      this.email = props.email
+      this.cpf = props.cpf
+      this.phone = props.phone
+      this.password = props.password
+      this.createdAt = props.createdAt
+      this.personType = props.personType
+      this.personType = props.personType
+      this.updatedAt = props.updatedAt
+      this.role = props.role
+      this.matricula = props.matricula
    }
 }
