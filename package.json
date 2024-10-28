@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx watch src/server.ts"
+    "start": "tsx watch src/server.ts",
+    "build": "tsc ./src/**/*.ts --outDir ./build"
   },
   "keywords": [],
   "author": "Lucas Capella Moreira dos Santos",
