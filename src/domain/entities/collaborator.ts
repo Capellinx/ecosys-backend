@@ -10,6 +10,7 @@ interface CollaboratorProps {
    createdAt: Date
    updatedAt: Date
    role?: Role
+   unity_conservation: string
 }
 
 export class Collaborator {
@@ -24,6 +25,7 @@ export class Collaborator {
    public createdAt: Date
    public updatedAt: Date
    public role?: Role
+   public unity_conservation: string
 
 
    constructor(props: CollaboratorProps, id?: string) {
@@ -39,5 +41,6 @@ export class Collaborator {
       this.updatedAt = props.updatedAt
       this.role = props.role
       this.matricula = props.matricula
+      this.unity_conservation = props.unity_conservation
    }
 }
