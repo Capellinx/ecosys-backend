@@ -32,6 +32,7 @@ export class CreateCollaboratorUseCase {
            password: encryptedPassword,
            personType: payload.personType === 'ATA' ? 'ATA' : 'ANALISTA',
            role: payload.personType === 'ATA' ? 'ATA' : 'ANALISTA',
+           unity_conservation: payload.unity_conservation,
            createdAt: new Date(),
            updatedAt: new Date()
         })
@@ -54,6 +55,7 @@ export class CreateCollaboratorUseCase {
          password: encryptedPassword,
          personType: payload.personType === 'CONDUTOR' ? 'CONDUTOR' : 'PESQUISADOR',
          role: payload.personType === 'CONDUTOR' ? 'CONDUTOR' : 'PESQUISADOR',
+         unity_conservation: payload.unity_conservation,
          createdAt: new Date(),
          updatedAt: new Date()
       })

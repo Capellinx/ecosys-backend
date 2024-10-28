@@ -18,6 +18,7 @@ export namespace CollaboratorRepository {
       password: string
       personType: PersonType
       role?: Role
+      unity_conservation: string,
       createdAt: Date,
       updatedAt: Date
    }

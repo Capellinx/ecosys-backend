@@ -7,7 +7,7 @@ export class CreateCollaboratorController {
    ){}
 
    async handle(request: Request, response: Response): Promise<Response> { 
-      const { name, email, personType, cpf, phone, role, matricula } = request.body;
+      const { name, email, personType, cpf, phone, role, matricula, unity_conservation } = request.body;
 
       const data = await this.createCollaboratorUseCase.execute({
          name,
@@ -16,7 +16,8 @@ export class CreateCollaboratorController {
          cpf,
          phone,
          role,
-         matricula
+         matricula,
+         unity_conservation
       })
 
       return response.status(201).json(data)

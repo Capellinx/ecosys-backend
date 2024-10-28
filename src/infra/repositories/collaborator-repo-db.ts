@@ -5,7 +5,7 @@ import { CreateCollaboratorDTO } from "../../use-cases/auth/create-collaborator/
 
 
 export class CollaboratorRepoDB implements CollaboratorRepository{
-  async create({cpf, email, matricula, name, phone, personType, role, password ,createdAt, updatedAt}: CollaboratorRepository.CreateParams): Promise<void> {
+  async create({cpf, email, matricula, name, phone, personType, role, password ,createdAt, updatedAt, unity_conservation}: CollaboratorRepository.CreateParams): Promise<void> {
       await prisma.collaborator.create({
          data: {
             name,
@@ -14,6 +14,7 @@ export class CollaboratorRepoDB implements CollaboratorRepository{
             cpf,
             phone,
             password,
+            unity_conservation,
             person_type: personType,
             role,
             createdAt,

@@ -9,6 +9,7 @@ export const createCollaboratorSchema = z.object({
    phone: z.coerce.string().min(1).max(14),
    personType: z.nativeEnum(PersonType),
    role: z.nativeEnum(Role).optional(),
+   unity_conservation: z.string()
 })
 
 export type CreateCollaboratorDTO = z.infer<typeof createCollaboratorSchema>
