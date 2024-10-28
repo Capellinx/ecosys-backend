@@ -1,4 +1,4 @@
-import { PersonType, Role } from "@prisma/client";
+import { Collaborator, PersonType, Role } from "@prisma/client";
 import { prisma } from "../../../prisma";
 import { CollaboratorRepository } from "../../domain/repositories/collaborator-repo";
 import { CreateCollaboratorDTO } from "../../use-cases/auth/create-collaborator/create-collaborator-dto";
@@ -25,17 +25,14 @@ export class CollaboratorRepoDB implements CollaboratorRepository{
       return
   }
 
-  async findByEmail(email: string): Promise<boolean | null> {
+  async findByEmail(email: string): Promise<Collaborator | null> {
     const collaborator = await prisma.collaborator.findUnique({
       where: {
         email
       },
-      select: {
-        email: true
-      }
     })
 
-    if (collaborator?.email) return true
+    if (collaborator?.email) return collaborator
 
     return null
   }
