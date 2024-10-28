@@ -44,11 +44,11 @@ model Collaborator {
   cpf                 String             @unique @db.VarChar(11)
   phone               String             @db.VarChar(20)
   password            String
-  unity_conservation  String
+  unity_conservation  String             @unique
   person_type         PersonType
   role                Role               @default(USER)
   registration_status RegistrationStatus @default(PENDING)
-  first_login          Boolean            @default(true)
+  first_login         Boolean            @default(true)
   public_id           String?            @db.VarChar(200)
   createdAt           DateTime           @default(now()) @map("created_at")
   updatedAt           DateTime           @updatedAt @map("updated_at")
