@@ -4,7 +4,7 @@
       {
          "type": "node",
          "request": "launch",
-         "name": "Launch Program",
+         "name": "Run npm start",
          "restart": true,
          "skipFiles": [
             "<node_internals>/**"
