@@ -4,8 +4,9 @@ import { CreateCollaboratorDTO } from "../../use-cases/auth/create-collaborator/
 export interface CollaboratorRepository {
    create(payload: CollaboratorRepository.CreateParams): Promise<void>
    findByEmail(email: string): Promise<Collaborator | null>
-   findById(id: string): Promise<string | null>
+   findById(id: string): Promise<Collaborator | null>
    approve(id: string): Promise<void>
+   updatePassword(id: string, password: string): Promise<void>
 }
 
 export namespace CollaboratorRepository {
