@@ -44,7 +44,7 @@ model Collaborator {
   cpf                 String             @unique @db.VarChar(11)
   phone               String             @db.VarChar(20)
   password            String
-  unity_conservation  String             @unique
+  unity_conservation  String             
   person_type         PersonType
   role                Role               @default(USER)
   registration_status RegistrationStatus @default(PENDING)
