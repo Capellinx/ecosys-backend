@@ -6,6 +6,7 @@ export interface CollaboratorRepository {
    findByEmail(email: string): Promise<Collaborator | null>
    findById(id: string): Promise<Collaborator | null>
    approve(id: string): Promise<void>
+   reject(id: string): Promise<void>
    updatePassword(id: string, password: string): Promise<void>
 }
 
