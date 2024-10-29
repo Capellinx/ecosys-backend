@@ -63,6 +63,20 @@ export class CollaboratorRepoDB implements CollaboratorRepository {
     return
   }
 
+  async reject(id: string): Promise<void> {
+    await prisma.collaborator.update({
+      where: {
+        id
+      },
+      data: {
+        registration_status: "REJECTED",
+        updatedAt: new Date()
+      }
+    })
+
+    return
+  }
+
   async updatePassword(id: string, password: string): Promise<void> {
     await prisma.collaborator.update({
       where: {
