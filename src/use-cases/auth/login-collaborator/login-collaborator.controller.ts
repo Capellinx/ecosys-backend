@@ -10,11 +10,11 @@ export class LoginCollaboratorController {
    async hande(request: Request, response: Response): Promise<Response> {
       const { email, password } = request.body
 
-      const collaborator = await this.loginCollaboratorUseCase.execute({
+      const { access_token, collaborator } = await this.loginCollaboratorUseCase.execute({
          email,
          password
       })
 
-      return response.status(200).end()
+      return response.status(200).json({ access_token, collaborator })
    }
 }
