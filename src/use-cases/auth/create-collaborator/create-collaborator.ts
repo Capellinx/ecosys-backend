@@ -1,14 +1,16 @@
 import { ConflictError } from "../../../config/application-errors";
 import { Collaborator } from "../../../domain/entities/collaborator";
 import { CollaboratorRepository } from "../../../domain/repositories/collaborator-repo";
+import { EmailService } from "../../../domain/services/email.service";
 import { EncryptedPasswordService } from "../../../domain/services/encrypted-password.service";
-import { GenerateRandomPass } from "../../../utils/generate-random-pass";
+import { GenerateRandomPass, template } from "../../../utils";
 import { CreateCollaboratorDTO } from "./create-collaborator-dto";
 
 export class CreateCollaboratorUseCase {
    constructor(
       private collaboratorRepository: CollaboratorRepository,
-      private encryptedPasswordService: EncryptedPasswordService
+      private encryptedPasswordService: EncryptedPasswordService,
+      private emailService: EmailService
    ) { }
 
    async execute(payload: CreateCollaboratorDTO): Promise<CreateCollaboratorUseCase.Output> {
@@ -37,7 +39,21 @@ export class CreateCollaboratorUseCase {
            updatedAt: new Date()
         })
         
-        await this.collaboratorRepository.create(newCollaborator)
+        await Promise.all([
+           await this.collaboratorRepository.create(newCollaborator),
+           await this.emailService.send({
+              to: {
+                 name: payload.name,
+                 email: payload.email
+              },
+              from: {
+                 name: 'EcoSys',
+                 email: 'suporte@ecosys.com.br'
+              },
+              subject: 'Ecosys - Seja bem-vindo!',
+              body: template.welcome(payload.name)
+           })
+        ])
 
         return {
            success: {
@@ -60,7 +76,21 @@ export class CreateCollaboratorUseCase {
          updatedAt: new Date()
       })
 
-      await this.collaboratorRepository.create(newCollaborator)
+      await Promise.all([
+         await this.collaboratorRepository.create(newCollaborator),
+         await this.emailService.send({
+            to: {
+               name: payload.name,
+               email: payload.email
+            },
+            from: {
+               name: 'EcoSys',
+               email: 'suporte@ecosys.com.br'
+            },
+            subject: 'Ecosys - Seja bem-vindo!',
+            body: template.welcome(payload.name)
+         })
+      ])
 
       return {
          success: {
