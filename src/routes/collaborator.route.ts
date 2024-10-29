@@ -18,7 +18,7 @@ collaboratorRouter.post(
    }
 )
 
-collaboratorRouter.post(
+collaboratorRouter.put(
    "/collaborator/:id/approve",
    ZodRequestValidate.execute({ params: approveCollaboratorSCchema}),
    async (request, response) => {
