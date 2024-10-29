@@ -11,7 +11,7 @@ export class ApproveCollaboratorUseCase {
       private encryptedPasswordService: EncryptedPasswordService
    ) {}
 
-   async execute(id: string): Promise<ApproveCollaboratorUseCase.Output> {
+   async execute(id: string): Promise<void> {
       const collaborator = await this.collaboratorRepository.findById(id)
 
       if(!collaborator) throw new BadRequestError("Collaborator not found")
@@ -39,20 +39,6 @@ export class ApproveCollaboratorUseCase {
          })
       ])
 
-      return {
-         success: {
-            id_collaborator: id,
-            message: "Collaborator approved"
-         }
-      }
+      return 
    }
 } 
-
-export namespace ApproveCollaboratorUseCase {
-   export type Output = {
-      success: {
-         id_collaborator: string
-         message: string
-      }
-   }
-}
