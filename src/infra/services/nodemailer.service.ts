@@ -1,17 +1,18 @@
 import Mail from "nodemailer/lib/mailer";
 import { EmailService, IMessage } from "../../domain/services/email.service";
 import nodemailer from 'nodemailer'
+import { env } from "../../env";
 
 export class NodemailerService implements EmailService {
    private transporter: Mail
 
    constructor(){
       this.transporter = nodemailer.createTransport({
-         host: "sandbox.smtp.mailtrap.io",
-         port: 2525,
+         host: env.EMAIL_HOST,
+         port: env.EMAIL_PORT,
          auth: {
-            user: "7648192e140a87",
-            pass: "ca3f856f119287"
+            user: env.EMAIL_USER,
+            pass: env.EMAIL_PASS
          }
       })
    }
