@@ -8,6 +8,7 @@ import { LoginCollaboratorSchema } from "../use-cases/auth/login-collaborator/lo
 import { loginCollaboratorController } from "../use-cases/auth/login-collaborator";
 import { rejectCollaboratorController } from "../use-cases/collaborator/reject-collaborator";
 import { rejectCollaboratorSCchema } from '../use-cases/collaborator/reject-collaborator/reject-collaborator-dto';
+import { VerifyToken } from "../middleware/verify-token.middleware";
 
 
 export const collaboratorRouter = Router()
@@ -23,6 +24,7 @@ collaboratorRouter.post(
 collaboratorRouter.put(
    "/collaborator/:id/approve",
    ZodRequestValidate.execute({ params: approveCollaboratorSCchema}),
+   VerifyToken.execute,
    async (request, response) => {
       return await approveCollaboratorController.handle(request, response)
    }
@@ -38,6 +40,7 @@ collaboratorRouter.post(
 
 collaboratorRouter.put(
    "/collaborator/:id/reject",
+   VerifyToken.execute,
    ZodRequestValidate.execute({ params: rejectCollaboratorSCchema }),
    async (request, response) => {
       return await rejectCollaboratorController.handle(request, response)
