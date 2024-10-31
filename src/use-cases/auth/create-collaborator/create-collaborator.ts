@@ -13,9 +13,8 @@ export class CreateCollaboratorUseCase {
       private emailService: EmailService
    ) { }
 
-   async execute(payload: CreateCollaboratorDTO): Promise<CreateCollaboratorUseCase.Output> {
+   async execute(payload: CreateCollaboratorDTO): Promise<void> {
       const collaborator = await this.collaboratorRepository.findByEmail(payload.email)
-      
       if (collaborator) throw new ConflictError("Collaborator already exists")
 
       const icmbioCollaborator = ['ATA', 'ANALISTA']
@@ -55,12 +54,7 @@ export class CreateCollaboratorUseCase {
            })
         ])
 
-        return {
-           success: {
-              id_collaborator: newCollaborator.id,
-              message: 'Collaborator created successfully',
-           }
-        }
+        return 
       }
       
       const newCollaborator = new Collaborator({
@@ -92,20 +86,6 @@ export class CreateCollaboratorUseCase {
          })
       ])
 
-      return {
-         success: {
-            id_collaborator: newCollaborator.id,
-            message: 'Collaborator created successfully',
-         }
-      }
-   }
-}
-
-export namespace CreateCollaboratorUseCase {
-   export type Output = {
-      success: {
-         id_collaborator: string
-         message: string
-      }
+      return 
    }
 }
