@@ -15,7 +15,7 @@ export class CreateCollaboratorUseCase {
 
    async execute(payload: CreateCollaboratorDTO): Promise<void> {
       const collaborator = await this.collaboratorRepository.findByEmail(payload.email)
-      if (collaborator) throw new ConflictError("Collaborator already exists")
+      if (collaborator) throw new ConflictError("Colaborador já está cadastrado")
 
       const icmbioCollaborator = ['ATA', 'ANALISTA']
 
