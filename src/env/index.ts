@@ -9,6 +9,7 @@ const envSchema = z.object({
   EMAIL_PORT: z.coerce.number().default(2525).describe('Email port'),
   EMAIL_USER: z.string().describe('Email user'),
   EMAIL_PASS: z.string().describe('Email password'),
+  FRONT_URL_DEV: z.string().describe('Front url dev'),
 })
 
 const _env = envSchema.safeParse(process.env)
