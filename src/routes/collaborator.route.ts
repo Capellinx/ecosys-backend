@@ -9,6 +9,8 @@ import { loginCollaboratorController } from "../use-cases/auth/login-collaborato
 import { rejectCollaboratorController } from "../use-cases/collaborator/reject-collaborator";
 import { rejectCollaboratorSCchema } from '../use-cases/collaborator/reject-collaborator/reject-collaborator-dto';
 import { VerifyToken } from "../middleware/verify-token.middleware";
+import { inviteResetPasswordSchema } from '../use-cases/collaborator/invite-reset-password/invite-reset-password-dto';
+import { inviteResetPasswordController } from "../use-cases/collaborator/invite-reset-password";
 
 
 export const collaboratorRouter = Router()
@@ -44,5 +46,13 @@ collaboratorRouter.put(
    ZodRequestValidate.execute({ params: rejectCollaboratorSCchema }),
    async (request, response) => {
       return await rejectCollaboratorController.handle(request, response)
+   }
+)
+
+collaboratorRouter.post(
+   "/collaborator/invite-reset-password",
+   ZodRequestValidate.execute({ body: inviteResetPasswordSchema }),
+   async (request, response) => {
+      return await inviteResetPasswordController.handle(request, response)
    }
 )
